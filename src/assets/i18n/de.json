@@ -437,7 +437,8 @@
     "export_all_params_title": "OCPP Parameter exportieren",
     "export_all_params_confirm": "Wollen Sie wirklich alle OCPP Parameter von allen Ladestationen am Standort '{{siteName}}' exportieren ?",
     "export_all_params_error": "Während des Exports aller OCPP Parameter ist ein Fehler aufgtreten.",
-    "display_users": "Nutzer anzeigen"
+    "display_users": "Nutzer anzeigen",
+    "private_limitation": "Some features are not available when the site is private"
   },
   "site_areas": {
     "assign_site": "Standort zuweisen",
@@ -529,6 +530,7 @@
     "email_does_not_exist": "Email existiert nicht",
     "cannot_check_email_in_backend": "Email konnte im Backend nicht überprüft werden",
     "wrong_email_or_password": "Falsche Email oder Passwort",
+    "technical_user_cannot_login_to_ui": "Technical user and cannot login using the application",
     "account_suspended": "Ihr Account wurde ausgesetzt",
     "account_pending": "Ihr Account ist nicht aktiv! Überprüfen Sie Ihre Emails",
     "super_user_account_pending": "Ihr Account ist nicht aktiv",
@@ -1906,6 +1908,7 @@
     "roaming_platforms": "Interoperabilitäts-Plattform",
     "cpo": "Ladepunkt Operator Identifikation",
     "emsp": "E-Mobility Service Provider Identifikation",
+    "tariffID": "Tariff ID",
     "description": "Open Charge Point Interface",
     "details": "Identifikation",
     "country_code": "Ländercode",

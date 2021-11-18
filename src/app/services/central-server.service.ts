@@ -1357,7 +1357,7 @@ export class CentralServerService {
     // Build Ordering
     this.getSorting(ordering, params);
     // Execute the REST service
-    return this.httpClient.get<DataResult<OicpEndpoint>>(`${this.centralRestServerServiceSecuredURL}/${ServerAction.OICP_ENDPOINTS}`,
+    return this.httpClient.get<DataResult<OicpEndpoint>>(this.buildRestEndpointUrl(ServerRoute.REST_OICP_ENDPOINTS),
       {
         headers: this.buildHttpHeaders(),
         params,
@@ -2396,7 +2396,7 @@ export class CentralServerService {
     // Verify init
     this.checkInit();
     // Execute
-    return this.httpClient.post<ActionResponse>(`${this.centralRestServerServiceSecuredURL}/${ServerAction.OICP_ENDPOINT_CREATE}`,
+    return this.httpClient.post<ActionResponse>(this.buildRestEndpointUrl(ServerRoute.REST_OICP_ENDPOINTS),
       oicpEndpoint,
       {
         headers: this.buildHttpHeaders(),
@@ -2410,8 +2410,8 @@ export class CentralServerService {
     // Verify init
     this.checkInit();
     // Execute
-    return this.httpClient.post<OICPJobStatusesResponse>(
-      `${this.centralRestServerServiceSecuredURL}/${ServerAction.OICP_ENDPOINT_SEND_EVSE_STATUSES}`, oicpEndpoint,
+    return this.httpClient.put<OICPJobStatusesResponse>(
+      this.buildRestEndpointUrl(ServerRoute.REST_OICP_ENDPOINT_SEND_EVSE_STATUSES, { id: oicpEndpoint.id }), {},
       {
         headers: this.buildHttpHeaders(),
       })
@@ -2424,8 +2424,8 @@ export class CentralServerService {
     // Verify init
     this.checkInit();
     // Execute
-    return this.httpClient.post<OICPJobStatusesResponse>(
-      `${this.centralRestServerServiceSecuredURL}/${ServerAction.OICP_ENDPOINT_SEND_EVSES}`, oicpEndpoint,
+    return this.httpClient.put<OICPJobStatusesResponse>(
+      this.buildRestEndpointUrl(ServerRoute.REST_OICP_ENDPOINT_SEND_EVSES, {id: oicpEndpoint.id }), {},
       {
         headers: this.buildHttpHeaders(),
       })
@@ -2438,8 +2438,8 @@ export class CentralServerService {
     // Verify init
     this.checkInit();
     // Execute
-    return this.httpClient.post<OICPPingResponse>(
-      `${this.centralRestServerServiceSecuredURL}/${ServerAction.OICP_ENDPOINT_PING}`, oicpEndpoint,
+    return this.httpClient.put<OICPPingResponse>(
+      this.buildRestEndpointUrl(ServerRoute.REST_OICP_ENDPOINT_PING, { id: oicpEndpoint.id }), oicpEndpoint,
       {
         headers: this.buildHttpHeaders(),
       })
@@ -2453,7 +2453,7 @@ export class CentralServerService {
     this.checkInit();
     // Execute
     return this.httpClient.put<ActionResponse>(
-      `${this.centralRestServerServiceSecuredURL}/${ServerAction.OICP_ENDPOINT_UPDATE}`, oicpEndpoint,
+      this.buildRestEndpointUrl(ServerRoute.REST_OICP_ENDPOINT, { id: oicpEndpoint.id }), oicpEndpoint,
       {
         headers: this.buildHttpHeaders(),
       })
@@ -2467,7 +2467,7 @@ export class CentralServerService {
     this.checkInit();
     // Execute the REST service
     return this.httpClient.delete<ActionResponse>(
-      `${this.centralRestServerServiceSecuredURL}/${ServerAction.OICP_ENDPOINT_DELETE}?ID=${id}`,
+      this.buildRestEndpointUrl(ServerRoute.REST_OICP_ENDPOINT, { id }),
       {
         headers: this.buildHttpHeaders(),
       })
@@ -2481,8 +2481,7 @@ export class CentralServerService {
     this.checkInit();
     // Execute the REST service
     return this.httpClient.put<ActionResponse>(
-      `${this.centralRestServerServiceSecuredURL}/${ServerAction.OICP_ENDPOINT_UNREGISTER}?ID=${id}`,
-      `{ "id": "${id}" }`,
+      this.buildRestEndpointUrl(ServerRoute.REST_OICP_ENDPOINT_UNREGISTER, { id }), {},
       {
         headers: this.buildHttpHeaders(),
       })
@@ -2496,8 +2495,7 @@ export class CentralServerService {
     this.checkInit();
     // Execute the REST service
     return this.httpClient.put<ActionResponse>(
-      `${this.centralRestServerServiceSecuredURL}/${ServerAction.OICP_ENDPOINT_REGISTER}?ID=${id}`,
-      `{ "id": "${id}" }`,
+      this.buildRestEndpointUrl(ServerRoute.REST_OICP_ENDPOINT_REGISTER, { id }), {},
       {
         headers: this.buildHttpHeaders(),
       })
